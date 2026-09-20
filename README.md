@@ -1,39 +1,165 @@
-# TERRAWATCH — classic desktop prototype
 
-This folder is an exact recovery of the original TERRAWATCH interface from your existing `TERRAWATCH.AppImage`. It has the original screens, design, simulated mine layout, demonstration sequence, charts, alerts, assistant demo, reports, and settings.
+# TerraWatch — Mine Subsidence Monitoring & Early Warning System
 
-It intentionally has **no login** and **no Gemini API**. Sensor readings remain clearly labeled as prototype data.
+TerraWatch is a low-cost IoT-based mine subsidence monitoring and early warning prototype designed to help identify measurable indicators of ground instability.
 
-## Real map and FastAPI sensor data
+The project combines multi-sensor monitoring, local alerts, data logging, and wireless communication to support safety-focused mine monitoring.
 
-The Map and Dashboard screens now use Leaflet with OpenStreetMap tiles. On startup, the app requests sensor data from `http://127.0.0.1:8000/sensors`. The endpoint may return either an array or an object containing `sensors`, `nodes`, or `data`.
+> **Project Status:** Prototype / Research Concept
+>
+> The proposed Adaptive Precursor Convergence Index (APCI) is a research hypothesis that requires literature review, field testing, calibration, and validation before any real-world deployment claims.
 
-Each sensor should include `id` (or `node_id`), `latitude`/`lat`, `longitude`/`lng`/`lon`, and `status`. Optional fields such as `location`, `zone`, and `apci` are shown in the marker popup. FastAPI must allow CORS from the Electron renderer, for example with `CORSMiddleware`. If the backend is unavailable, the map keeps using the labeled local prototype data.
+## 🚀 Key Features
 
-## Run in VS Code
+- Multi-sensor monitoring for ground instability indicators
+- Ground tilt monitoring using MPU6050
+- Crack-width monitoring using a linear potentiometer / crack meter
+- Surface settlement monitoring using an ultrasonic sensor
+- Soil moisture monitoring for potential water ingress indicators
+- Vibration detection using SW-420
+- ESP32-based sensor node
+- Local buzzer and LED alerts
+- SD card data logging with timestamps
+- LoRa-based wireless communication concept
+- Dashboard for monitoring sensor values and node status
+- Research-oriented APCI risk scoring concept
 
-Open this folder in VS Code, then run each command separately in the terminal:
+## 💡 Proposed Innovation: APCI
+
+**Adaptive Precursor Convergence Index (APCI)** is a proposed research concept for combining multiple monitoring indicators into an interpretable risk score.
+
+The concept explores:
+
+1. Baseline deviation
+2. Trend changes
+3. Persistence of unusual readings
+4. Cross-sensor convergence
+
+The objective is to investigate whether combining multiple indicators can provide more useful context than relying only on fixed single-sensor thresholds.
+
+APCI is not a validated prediction model. Its reliability must be established through research, site-specific calibration, historical data analysis, and field validation.
+
+## 🏗️ System Architecture
+
+Sensors → ESP32 → Data Processing → Local Alert + SD Logging
+                          ↓
+                    LoRa Communication
+                          ↓
+                    Monitoring Dashboard
+
+## 🔧 Hardware Components
+
+| Component | Purpose |
+|---|---|
+| ESP32 | Main processing unit |
+| MPU6050 | Tilt and motion monitoring |
+| Ultrasonic Sensor | Surface settlement measurement concept |
+| Linear Potentiometer | Crack-width measurement prototype |
+| Soil Moisture Sensor | Water ingress indicator |
+| SW-420 | Vibration detection |
+| DS3231 RTC | Timestamping |
+| SD Card | Local data storage |
+| LoRa Module | Wireless communication |
+| Buzzer + LED | Local warning indicators |
+
+## 🖥️ Software & Technologies
+
+- HTML, CSS, JavaScript
+- Vite
+- Node.js / npm
+- ESP32 Arduino framework (hardware prototype)
+- LoRa communication concept
+- Git & GitHub
+
+## 📂 Project Setup
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/AshishRai-art/Terrawatch.git
+cd Terrawatch
+```
+
+### Install Dependencies
 
 ```bash
 npm install
-npm start
 ```
 
-TERRAWATCH opens as a desktop Electron application.
+### Start Development Server
 
-On launch, sign in with one of the local prototype accounts:
-
-- `admin` / `admin123` — System Administrator
-- `operator` / `operator123` — Arjun Kumar, Safety Operator
-
-Use the sign-out icon beside the operator identity to return to the login screen. This is demo authentication only and is not a production identity system.
-
-## Live AI assistant
-
-The AI Assistant uses Gemini through the Electron main process. Keep the local `.env` file beside `main.js` with:
-
-```env
-GEMINI_API_KEY=your_gemini_key
+```bash
+npm run dev
 ```
 
-Ask a question from the Dashboard assistant or the AI Assistant page. Current sensor readings, alerts, thresholds, and communication state are sent as context. The API key is not exposed to the renderer. If Gemini is unavailable, the prototype shows a connection notice and keeps the local demo response available.
+Open the local URL displayed in the terminal.
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+### Run Lint
+
+```bash
+npm run lint
+```
+
+## 📊 Monitoring Workflow
+
+1. Sensors collect environmental and ground movement indicators.
+2. ESP32 processes the sensor readings.
+3. Data is timestamped and stored locally.
+4. The system evaluates configured warning conditions.
+5. Local alerts can operate independently of network availability.
+6. LoRa communication can transmit data to a gateway when available.
+7. The dashboard displays monitoring information and node status.
+
+## 🌐 Intended Applications
+
+- Mine subsidence monitoring research
+- Open-pit slope monitoring research
+- Underground mine safety technology prototypes
+- Remote environmental and structural monitoring
+- Multi-node IoT monitoring experiments
+
+## ⚠️ Limitations & Safety
+
+- This project is a prototype and is not a certified mine safety system.
+- Sensor readings require calibration and environmental testing.
+- Wireless performance depends on mine conditions and infrastructure.
+- Sensor failure, dust, moisture, and power limitations must be considered.
+- Risk scores must not be treated as confirmed collapse predictions.
+- Real-world deployment requires expert review, appropriate testing, and regulatory compliance.
+
+## 🔬 Future Improvements
+
+- Site-specific baseline calibration
+- Sensor fault detection
+- Improved data visualization
+- Offline-first dashboard functionality
+- Multi-node monitoring
+- Historical trend analysis
+- APCI research and validation
+- Field testing with domain experts
+- Ruggedized hardware enclosure
+- Solar and battery power options
+
+## 👨‍💻 Project Information
+
+**Project Name:** TerraWatch
+
+**Category:** IoT · Mine Safety · Environmental Monitoring · Early Warning Research
+
+**Project Type:** Prototype / Research Concept
+
+**Repository:** https://github.com/AshishRai-art/Terrawatch
+
+## 📜 License
+
+Add an appropriate open-source license after deciding how you want your project to be used and shared.
+
+---
+
+Built as a technology prototype exploring affordable and multi-sensor approaches to mine safety monitoring.
