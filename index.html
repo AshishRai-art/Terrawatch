@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TERRAWATCH — Mine Intelligence Command</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="theme.css" />
+    <link rel="stylesheet" href="auth.css" />
+    <link rel="stylesheet" href="demo-auth.css" />
+  </head>
+  <body>
+    <section class="login-screen" id="loginScreen" aria-labelledby="loginTitle">
+      <div class="login-grid" aria-hidden="true"></div>
+      <div class="login-orbit login-orbit-one" aria-hidden="true"></div>
+      <div class="login-orbit login-orbit-two" aria-hidden="true"></div>
+      <div class="login-panel">
+        <div class="login-brand"><span class="brand-mark">◈</span><span>TERRA<span>WATCH</span></span></div>
+        <div class="login-kicker"><i></i> SECURE OPERATOR ACCESS</div>
+        <h1 id="loginTitle">Environmental intelligence,<br><em>kept accountable.</em></h1>
+        <p class="login-disclaimer">Prototype / research system — not certified for operational safety decisions.</p>
+        <form id="loginForm" novalidate aria-describedby="loginError">
+          <div class="field-group">
+            <label for="username">Username</label>
+            <input id="username" name="username" type="text" autocomplete="username" placeholder="Enter username" required aria-label="Username" />
+          </div>
+          <div class="field-group">
+            <label for="password">Password</label>
+            <div class="password-field"><input id="password" name="password" type="password" autocomplete="current-password" placeholder="Enter password" required aria-label="Password" /><button type="button" id="passwordToggle" aria-label="Show password">SHOW</button></div>
+          </div>
+          <p class="login-error" id="loginError" role="alert" aria-live="polite"></p>
+          <button class="login-submit" id="loginSubmit" type="submit" aria-label="Sign in to TERRAWATCH"><span>Sign in</span><span class="login-spinner" aria-hidden="true"></span><span class="login-arrow" aria-hidden="true">↗</span></button>
+        </form>
+        <div class="demo-hint"><span class="demo-label">DEMO ACCESS · SELECT AN ACCOUNT</span><button type="button" class="demo-account" data-demo-user="admin" data-demo-password="admin123"><b>admin</b><span>Administrator</span><code>admin123</code></button><button type="button" class="demo-account" data-demo-user="operator" data-demo-password="operator123"><b>operator</b><span>Safety Operator</span><code>operator123</code></button></div>
+        <div class="login-footer"><span><i class="status-light"></i> LOCAL PROTOTYPE NODE</span><span>v0.9.4</span></div>
+      </div>
+    </section>
+    <div class="app-shell is-hidden" id="appShell">
+      <aside class="sidebar">
+        <div class="brand"><span class="brand-mark">◈</span><span>TERRA<span>WATCH</span></span></div>
+        <div class="prototype-pill"><i></i> LIVE DEMO DATA</div>
+        <nav id="nav"></nav>
+        <div class="side-footer">
+          <div class="operator"><span class="avatar" id="operatorAvatar">AK</span><span><b id="operatorName">Arjun Kumar</b><small id="operatorRole">Safety Operator</small></span><button id="logoutBtn" aria-label="Sign out" title="Sign out">↪</button></div>
+          <small>v0.9.4 • RESEARCH PROTOTYPE</small>
+        </div>
+      </aside>
+      <main>
+        <header class="topbar">
+          <div class="crumb"><button class="mobile-menu" id="menuBtn" aria-label="Toggle navigation menu">☰</button><span id="pageEyebrow">COMMAND CENTER</span><h1 id="pageTitle">Mine overview</h1></div>
+          <div class="top-actions">
+            <button class="icon-btn" id="themeBtn" title="Switch to light mode" aria-label="Switch to light mode">◐</button>
+            <button class="primary" id="scenarioBtn" aria-label="Run demo sequence">▶ Run demo sequence</button>
+          </div>
+        </header>
+        <div class="safety-banner" role="status" aria-live="polite"><span aria-hidden="true">◈</span><b>AI-ASSISTED PROTOTYPE ANALYSIS</b><span>Interpretations support trained personnel. Field verification and site-specific calibration are required.</span><button id="bannerClose" aria-label="Close safety banner">×</button></div>
+        <section id="content" class="content" aria-live="polite"></section>
+      </main>
+    </div>
+    <div class="toast-wrap" id="toasts"></div>
+    <div class="modal-backdrop" id="modal"></div>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <script src="app.js"></script>
+  </body>
+</html>
