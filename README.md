@@ -71,41 +71,6 @@ Sensors → ESP32 → Data Processing → Local Alert + SD Logging
 - LoRa communication concept
 - Git & GitHub
 
-## 📂 Project Setup
-
-### Clone the Repository
-
-```bash
-git clone https://github.com/AshishRai-art/Terrawatch.git
-cd Terrawatch
-```
-
-### Install Dependencies
-
-```bash
-npm install
-```
-
-### Start Development Server
-
-```bash
-npm run dev
-```
-
-Open the local URL displayed in the terminal.
-
-### Build for Production
-
-```bash
-npm run build
-```
-
-### Run Lint
-
-```bash
-npm run lint
-```
-
 ## 📊 Monitoring Workflow
 
 1. Sensors collect environmental and ground movement indicators.
